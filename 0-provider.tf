@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "fiap-fase4-equipe15"
+    bucket = "fiap-proj-fase4-equipe15"
     key    = "gateway"
     region = "us-east-1"
   }
