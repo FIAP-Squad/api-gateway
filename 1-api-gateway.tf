@@ -8,59 +8,48 @@ resource "aws_api_gateway_rest_api" "fiap-api" {
         version = "1.0"
         }
         paths = {
-        "/path1" = {
+        "/users" = {
             get = {
             x-amazon-apigateway-integration = {
-                httpMethod           = "GET"
+                httpMethod           = "ANY"
                 payloadFormatVersion = "1.0"
                 type                 = "HTTP_PROXY"
-                uri                  = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+                uri                  = "http://afd3d7f3a84d34b13815bd73c825c16a-646025546.us-east-1.elb.amazonaws.com/api/users"
+            }
+            }
+        },
+        "/products" = {
+            get = {
+            x-amazon-apigateway-integration = {
+                httpMethod           = "ANY"
+                payloadFormatVersion = "1.0"
+                type                 = "HTTP_PROXY"
+                uri                  = "http://a659e378191c6462e87638eaec2641d1-776889456.us-east-1.elb.amazonaws.com/api/products"
+            }
+            }
+        },
+        "/orders" = {
+            get = {
+            x-amazon-apigateway-integration = {
+                httpMethod           = "ANY"
+                payloadFormatVersion = "1.0"
+                type                 = "HTTP_PROXY"
+                uri                  = "http://a08982a63bc024fe489f6a54c39b2d40-894307597.us-east-1.elb.amazonaws.com/api/orders"
+            }
+            }
+        },
+        "/payment" = {
+            get = {
+            x-amazon-apigateway-integration = {
+                httpMethod           = "ANY"
+                payloadFormatVersion = "1.0"
+                type                 = "HTTP_PROXY"
+                uri                  = "http://a856345946ac244f7befcec43abba128-1534035786.us-east-1.elb.amazonaws.com/api/payment"
             }
             }
         }
         }
     })
-
-## PARA PROJETO DA FIAP
-    # body = jsonencode({
-    #     openapi = "3.0.1"
-    #     info = {
-    #     title   = "example"
-    #     version = "1.0"
-    #     }
-    #     paths = {
-    #     "/users" = {
-    #         get = {
-    #         x-amazon-apigateway-integration = {
-    #             httpMethod           = "GET"
-    #             payloadFormatVersion = "1.0"
-    #             type                 = "HTTP_PROXY"
-    #             uri                  = "http://endpoint-classic-load-balancer/users"
-    #         }
-    #         }
-    #     },
-    #     "/products" = {
-    #         get = {
-    #         x-amazon-apigateway-integration = {
-    #             httpMethod           = "GET"
-    #             payloadFormatVersion = "1.0"
-    #             type                 = "HTTP_PROXY"
-    #             uri                  = "http://endpoint-classic-load-balancer/products"
-    #         }
-    #         }
-    #     },
-    #     "/orders" = {
-    #         get = {
-    #         x-amazon-apigateway-integration = {
-    #             httpMethod           = "GET"
-    #             payloadFormatVersion = "1.0"
-    #             type                 = "HTTP_PROXY"
-    #             uri                  = "http://endpoint-classic-load-balancer/orders"
-    #         }
-    #         }
-    #     }
-    #     }
-    # })
 
   endpoint_configuration {
     types = ["REGIONAL"]
